@@ -44,42 +44,62 @@ let listNYC = [
 
 let initialObj = {
   id: 0,
-  name:'',
-  age:'',
-  gender:0,
-  address:'',
+  name: '',
+  age: '',
+  gender: 0,
+  address: '',
 }
 
 function App() {
 
   let [nyc, setNYC] = useState(listNYC);
-  let [obj, setObj] = useState(initialObj) 
+  let [obj, setObj] = useState(initialObj)
 
   const addNYC = (obj) => {
-    let newArr = [...nyc, obj]
-    console.log(newArr);
-    setNYC(newArr)
+    if (obj.id > 0) {
+      let s = nyc.find(x => x.id = obj.id)
+      s.name = obj.name;
+      s.age = obj.age;
+      s.gender = obj.gender;
+      s.address = obj.address;
+      setNYC([...nyc])
+      // sửa
+    } else {
+      // thêm mới
+      let newArr = [...nyc, obj]
+      setNYC(newArr)
+    }
+     
+
   }
 
-  const editData  = (obj)=>{
+  const editData = (obj) => {
     console.log(obj);
-    setObj({...obj})
+    setObj({ ...obj })
   }
 
+  const deleteData = (obj) => {
+    let s = nyc.filter(x => x.id != obj.id)
+    console.log(s);
+    setNYC([...s])
+  }
 
+  const submit =()=>{
+     
+  }
   return (
-      <div className="container">
-        <div className="row">
-          <div className="col-8">
-            <Qlnyc editDataFunc={editData} listNYC={nyc} />
-          </div>
-          <div className="col-4">
-            {/* form */}
-            <Form obj={obj} addNYC={addNYC} />
-          </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-8">
+          <Qlnyc editDataFunc={editData} listNYC={nyc} deleteData={deleteData} />
+        </div>
+        <div className="col-4">
+          {/* form */}
+          <Form obj={obj} addNYC={addNYC} />
         </div>
       </div>
-    
+    </div>
+
   );
 }
 

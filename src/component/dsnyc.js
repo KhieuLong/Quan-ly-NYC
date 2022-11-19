@@ -1,7 +1,7 @@
 
 function Qlnyc(props) {
 
-    let { listNYC, editDataFunc } = props; 
+    let { listNYC, editDataFunc,deleteData } = props; 
 
     return (
 
@@ -30,9 +30,9 @@ function Qlnyc(props) {
                             {x.gender == 2 && <td>Khác</td>} 
                             <td>{x.address}</td>
                             <td>
-                                <button className="btn btn-primary">Thêm</button>
+                                <button onClick={()=>{}} className="btn btn-primary">Thêm</button>
                                 <button onClick={()=>editDataFunc(x)} className="btn btn-danger">Sửa</button>
-                                <button className="btn btn-success">Xóa</button>
+                                <button onClick={()=>deleteData(x)} className="btn btn-success">Xóa</button>
                             </td>
                         </tr>
                     ))}
